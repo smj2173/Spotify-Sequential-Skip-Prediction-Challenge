@@ -72,7 +72,7 @@ charts: playlist created by Spotify containing most listened songs from a given 
 
 ![Alt text](img/graph_1.png)
 
-## Random Forest Classifier
+### Random Forest Classifier
 Next, we worked on creating our baseline model that would be evaluated against a test set. We obtained a shortened version of the training data set, and conducted a training/test split of 70% 30% on this sample. That way, we were able to still use a large portion of the data without running into errors regarding training and test size. To implement the Random Forest classifier, first, it is important to understand how the Random Forest algorithm works. It can be described in four steps:
 1) From a dataset, select random samples of data, 2) Construct a decision tree for every sample and receive a resulting prediction from each tree.
 3) Conduct a vote for each predicted result, and 4) For the final prediction, select the prediction result with the most votes.
@@ -95,10 +95,10 @@ hist_user_behavior_is_shuffle: Boolean indicating if the user encountered this t
 These are then evaluated in order to predict whether a song is skipped or not_skipped. A baseline model was created and accuracy was evaluated as a metric for its performance. One observation about this baseline is that training the model was very quick, because random forest's depth does not have to be too deep in order to make a correct prediction. Thus, it is a good strategy for large datasets if time is a constraint. 
 
 
-## Gradient Boosting Tree
+### Gradient Boosting Tree
 Next, the Gradient Boosting Tree (GBT) model was implemented. Gradient Boosting Trees is similar to Random Forest, except that each successive predictor tries to improve on its predecessor by reducing the errors. This is conceptualized by the idea that a weak hypothesis can be tweaked in order to bring stronger hypotheses/learning algorithms. The goal of GBT is to minimize the loss, which is the difference between the real class of the training example and the predicted class. As a result, Gradient Boosting classifiers highly rely on loss functions, which is why in the implementation the model is tuned in order to get better performance. The learning rate was set to 0.1, the maximum depth of the individual regression estimators to 5, and used a logarithmic loss function. 
 
-## Long Term Short Memory (LSTM)
+### Long Term Short Memory (LSTM)
 Finally, we created a model that uses deep learning recurrent neural networks in order to predict song skip behavior. LSTMs are excellent in sequence prediction, which is why their architecture can be leveraged for song skip prediction. In our architecture, we constructed a deep learning model that inputs the vectorized forms of the nine features we highlighted, and output whether a song will be skipped or not. This consists of an embedding layer for the inputs, a LSTM of 100 units, and a dense layer to output the skip prediction. 
 
 The LSTM was trained using the hyperparameters of a learning rate of 0.1, an Adam optimizer, and a batch size of 300 on 100 epochs.
