@@ -42,8 +42,11 @@ We chose to work with a split version of the training set representing roughly 1
 To assess which variables we wanted to include in our model, we performed correlations between the variables in the training dataset and the Boolean skip_1, skip_2, and skip_3 variables. The significance of the skip_1, skip_2, and skip_3 variables are as follows: 
 
 skip_1: the track was only played very briefly 
+
 skip_2: track was played briefly 
+
 skip_3: most of the track was played 
+
 
 Unfortunately the dataset description of features supplied by AICrowd did not specify the quantitative significance or number of seconds in a song played corresponding of "very briefly," "briefly," and "most of track was played," so the skip variables are inherently ambiguous. We chose to keep the skip_1, skip_2, skip_3 variable names the same for this very reason, as there is no way to  specify the exact connotation of "very briefly," "briefly" and "most of track played."
 
@@ -83,14 +86,23 @@ In order to predict whether a song was skipped or not, the three categories of s
 The features being fed to the model are as follows:
 
 context_type: What type of context the playback occurred within.
+
 context_switch: Boolean indicating if the user changed context between the previous row and the current row. For example, this would happen if the user switched from one playlist to another.
+
 session_position: Position of the listened track within a session, ranges from 1 to 20. 
+
 session_length: The number of tracks listened to in the session, ranges from 10 to 20.
+
 hist_user_behavior_n_seekback: Number of times the user did a seek back within track.
+
 hist_user_behavior_n_seekfwd: Number of times the user did a seek forward within track.
+
 no_pause_before_play: Boolean indicating if there was no pause between playback of the previous track and this track.
+
 long_pause_before_play: Boolean indicating if there was a long pause between playback of the previous track and this track.
+
 hist_user_behavior_is_shuffle: Boolean indicating if the user encountered this track while shuffle mode was activated.
+
 
 These are then evaluated in order to predict whether a song is skipped or not_skipped. A baseline model was created and accuracy was evaluated as a metric for its performance. One observation about this baseline is that training the model was very quick, because random forest's depth does not have to be too deep in order to make a correct prediction. Thus, it is a good strategy for large datasets if time is a constraint. 
 
