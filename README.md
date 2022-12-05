@@ -16,7 +16,7 @@ Many streaming services and psychologists alike have dedicated research to explo
 In a study conducted by Montecchio et al., 2020, they created a distribution of the likelihood of skipping relative to time using a dataset from Spotify composed of 100 popular songs released in April to May 2018 that were skipped by Spotify users over 3 billion times (Montecchio et al, 2020). As seen below, the skipping likelihood rapidly declines the longer a user listens to a given song. In Figure 2 which narrows in on the skip likelihood within the first thirty seconds of a song, it can be seen that the peak skip likelihood or time of “aesthetic judgement” occurs at roughly 2 seconds. The skip likelihood is very low in the first 1-2 seconds, Montecchio et al., 2020 estimate, because the user has not yet identified what song they are listening to enough to make an accurate aesthetic judgement about it. While this study in no way attempts to predict skip behavior—they instead examine when it is most likely based on publicly available datasets—their work establishes that regardless of certain factors like the musical structure of the song or how long the user has been listening to music, user skips at large are more common in the first few seconds of a song. 
 
 ![Alt text](img/related.png)
-![Alt text](img/related2.png)
+![Alt text](img/related_2.png)
 
 Past Approaches to the Sequential Skip Challenge
 The three approaches outlined in this section rely on the AICrowd publlic dataset collected by Brost. et al. (2019).
@@ -53,10 +53,13 @@ Results show every single p-value was less than 0.05, the highest of all p-value
 
 Since the data showed us that all variable pairs, regardless of the strength of their dependence, can be interpreted as statistically significant according to their p-values, we then had to turn to the magnitude of the test statistics to think about which variables we wanted to include in our model. 
 
+![Alt text](img/correlation_1.png, "Figure 3")
+![Alt text](img/correlation_1.png, "Figure 4")
+
 Figures 3 and 4 depict the mean Chi-Square test statistic values respective to skip\_1, skip_2, skip_3 and the training set variables.
 As one can see in the figures, the magnitude of Chi-Square test statistic was highest respective to skip_1 with the hist_user_behavior_n_seekback, long_pause_before_play, and no_pause_before_play variables. The test statistic magnitude was highest respective to skip_2 with the no_pause_before_play, context\_type, and session_length variables. Lastly, the magnitude of the test statistic was highest with respect to skip_3 with the hist_user_behavior_n_seekfwd, no_pause_before_play, and session_length variables.
 
-We were also interested in looking at how different context types of tracks affected skip behavior. To explore this a bit further, we calculated the frequency of each context_type respective to when skip_1, skip_2 and skip_3 were 'True'. As you can see in Figure 3, user skips are more frequent with the context type “user_collection” across skip_1, skip_2, and skip_3. While the user_collection is the most popular context_type regardless of whether songs were skipped or not, it is important nontheless to recognize that users more frequently skip songs in a user collection. The six types  of music context types listed in Figure 3 signify:
+We were also interested in looking at how different context types of tracks affected skip behavior. To explore this a bit further, we calculated the frequency of each context_type respective to when skip_1, skip_2 and skip_3 were 'True'. As you can see in Figure 3, user skips are more frequent with the context type “user_collection” across skip_1, skip_2, and skip_3. While the user_collection is the most popular context_type regardless of whether songs were skipped or not, it is important nontheless to recognize that users more frequently skip songs in a user collection. The six types  of music context types listed in the graph below  signify:
 catalog: songs pertaining to a a specific artist or album that is finite. 
 editorial playlist: playlist created by Spotify for its users, i.e. "90's Workout" 
 radio: Spotify Radio function specifies custom playlist for a given Artist or track, i.e. Lana Del Rey Radio. 
