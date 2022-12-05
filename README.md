@@ -10,7 +10,7 @@ Despite the many features and offerings of Spotify’s streaming service, instan
 # Related Work
 To contextualize the approach to predicting user skip behavior and understand which features to include in the model, we first looked at song skip behavior at large. Before examining past approaches to the Spotify Sequential Skip Challenge that our research directly responds to,  will first examine these patterns in skip behavior. 
 
-Song Skip Behavior
+// Song Skip Behavior
 Many streaming services and psychologists alike have dedicated research to exploring the question of how much time is necessary to make “accurate aesthetic judgements" (Montecchio et al., 2020). How users respond to songs they listen to and whether they choose to skip them falls within this accurate aesthetic judgement idea. After all, an estimated quarter of all streamed songs are skipped within the first five seconds, with only half of all streamed songs being played in full (Montecchio et al., 2020). 
 
 In a study conducted by Montecchio et al., 2020, they created a distribution of the likelihood of skipping relative to time using a dataset from Spotify composed of 100 popular songs released in April to May 2018 that were skipped by Spotify users over 3 billion times (Montecchio et al, 2020). As seen below, the skipping likelihood rapidly declines the longer a user listens to a given song. In Figure 2 which narrows in on the skip likelihood within the first thirty seconds of a song, it can be seen that the peak skip likelihood or time of “aesthetic judgement” occurs at roughly 2 seconds. The skip likelihood is very low in the first 1-2 seconds, Montecchio et al., 2020 estimate, because the user has not yet identified what song they are listening to enough to make an accurate aesthetic judgement about it. While this study in no way attempts to predict skip behavior—they instead examine when it is most likely based on publicly available datasets—their work establishes that regardless of certain factors like the musical structure of the song or how long the user has been listening to music, user skips at large are more common in the first few seconds of a song. 
@@ -18,6 +18,7 @@ In a study conducted by Montecchio et al., 2020, they created a distribution of 
 ![Alt text](img/related.png)
 ![Alt text](img/related_2.png)
 
+//
 Past Approaches to the Sequential Skip Challenge
 The three approaches outlined in this section rely on the AICrowd publlic dataset collected by Brost. et al. (2019).
 
@@ -32,10 +33,12 @@ It is important to note as well that the winning model of the Spotify Sequential
 # Data
 The dataset used in the current research is from the open-sourced AICrowd's Sequential Spotify Skip Prediction Challenge (Brost et al., 2019). The goal of this challenge was to predict whether a given song would be skipped by a particular user during the second half of their listening session. The dataset contains 130 million unique Spotify listening sessions, with each listening session defined by 21 characteristics, including a session ID, the sequence of tracks played during the session, the time of day of the session, etc. The dataset contains 50704 distinct tracks that users heard during their listening sessions. Each of these tracks is defined by 29 features, including a track ID, track duration, track popularity estimate, track beat strength, etc. With over 2500 participants competing in the challenge.
 
+//
 Preprocessing Data
 We chose to work with a split version of the training set representing roughly 10% or 13 million of the 130 million listening sessions associated with user interactions in the dataset. This split training set was supplied by the AICrowd challenge. While we did have the intention of using the whole dataset due to its larger sampling size, we were limited by space constraints. We were able to process each data file inside the split training set–66 in total–and convert them to panda Dataframes for our analyses.
 
 # Methods
+//
 Correlations
 To assess which variables we wanted to include in our model, we performed correlations between the variables in the training dataset and the Boolean skip_1, skip_2, and skip_3 variables. The significance of the skip_1, skip_2, and skip_3 variables are as follows: 
 
@@ -91,6 +94,7 @@ hist_user_behavior_is_shuffle: Boolean indicating if the user encountered this t
 
 These are then evaluated in order to predict whether a song is skipped or not_skipped. A baseline model was created and accuracy was evaluated as a metric for its performance. One observation about this baseline is that training the model was very quick, because random forest's depth does not have to be too deep in order to make a correct prediction. Thus, it is a good strategy for large datasets if time is a constraint. 
 
+//
 Gradient Boosting Tree
 Next, the Gradient Boosting Tree (GBT) model was implemented. Gradient Boosting Trees is similar to Random Forest, except that each successive predictor tries to improve on its predecessor by reducing the errors. This is conceptualized by the idea that a weak hypothesis can be tweaked in order to bring stronger hypotheses/learning algorithms. The goal of GBT is to minimize the loss, which is the difference between the real class of the training example and the predicted class. As a result, Gradient Boosting classifiers highly rely on loss functions, which is why in the implementation the model is tuned in order to get better performance. The learning rate was set to 0.1, the maximum depth of the individual regression estimators to 5, and used a logarithmic loss function. 
 
