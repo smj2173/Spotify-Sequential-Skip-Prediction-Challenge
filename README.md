@@ -110,19 +110,9 @@ The LSTM further performed at an accuracy level of 6\%. This was the same as Ran
 
 Another consideration is that LSTM training time is long as it requires much time for the memory gates to input or forget information. Thus, the LSTM approach may not be feasible for large datasets with complex features. 
 
-\begin{table}[]
-\centering
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{|l|l|l|l|}
-\hline
-                & precision & recall & f1-score \\ \hline
-0 (skipped)     & 0.54      & 0.11   & 0.18     \\ \hline
-1 (not skipped) & 0.66      & 0.95   & 0.78     \\ \hline
-\end{tabular}%
-}
-\caption{Precision/Recall/F1 score of class prediction for the Gradient Boosting Tree classifier. }
-\label{tab:my-table}
-\end{table}
+![Alt text](img/Screen Shot 2022-12-04 at 8.54.27 PM.png)
+
+
 
 
 # Future Work
