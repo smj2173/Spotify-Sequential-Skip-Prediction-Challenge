@@ -15,7 +15,8 @@ Many streaming services and psychologists alike have dedicated research to explo
 
 In a study conducted by Montecchio et al., 2020, they created a distribution of the likelihood of skipping relative to time using a dataset from Spotify composed of 100 popular songs released in April to May 2018 that were skipped by Spotify users over 3 billion times (Montecchio et al, 2020). As seen below, the skipping likelihood rapidly declines the longer a user listens to a given song. In Figure 2 which narrows in on the skip likelihood within the first thirty seconds of a song, it can be seen that the peak skip likelihood or time of “aesthetic judgement” occurs at roughly 2 seconds. The skip likelihood is very low in the first 1-2 seconds, Montecchio et al., 2020 estimate, because the user has not yet identified what song they are listening to enough to make an accurate aesthetic judgement about it. While this study in no way attempts to predict skip behavior—they instead examine when it is most likely based on publicly available datasets—their work establishes that regardless of certain factors like the musical structure of the song or how long the user has been listening to music, user skips at large are more common in the first few seconds of a song. 
 
-![Alt text](smj2173/Spotify-Sequential-Skip-Prediction-Challenge/img/related.png)
+![Alt text](img/related.png)
+![Alt text](img/related2.png)
 
 Past Approaches to the Sequential Skip Challenge
 The three approaches outlined in this section rely on the AICrowd publlic dataset collected by Brost. et al. (2019).
