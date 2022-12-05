@@ -53,13 +53,14 @@ Results show every single p-value was less than 0.05, the highest of all p-value
 
 Since the data showed us that all variable pairs, regardless of the strength of their dependence, can be interpreted as statistically significant according to their p-values, we then had to turn to the magnitude of the test statistics to think about which variables we wanted to include in our model. 
 
-![Alt text](img/correlation_1.png, "Figure 3")
-![Alt text](img/correlation_1.png, "Figure 4")
+![Alt text](img/correlation_1.png)
+![Alt text](img/correlation_2.png)
 
-Figures 3 and 4 depict the mean Chi-Square test statistic values respective to skip\_1, skip_2, skip_3 and the training set variables.
-As one can see in the figures, the magnitude of Chi-Square test statistic was highest respective to skip_1 with the hist_user_behavior_n_seekback, long_pause_before_play, and no_pause_before_play variables. The test statistic magnitude was highest respective to skip_2 with the no_pause_before_play, context\_type, and session_length variables. Lastly, the magnitude of the test statistic was highest with respect to skip_3 with the hist_user_behavior_n_seekfwd, no_pause_before_play, and session_length variables.
+The stats above depict the mean Chi-Square test statistic values respective to skip\_1, skip_2, skip_3 and the training set variables.
+As one can see in the figures, the magnitude of Chi-Square test statistic was highest respective to skip_1 with the hist_user_behavior_n_seekback, long_pause_before_play, and no_pause_before_play variables. The test statistic magnitude was highest respective to skip_2 with the no_pause_before_play, context_type, and session_length variables. Lastly, the magnitude of the test statistic was highest with respect to skip_3 with the hist_user_behavior_n_seekfwd, no_pause_before_play, and session_length variables.
 
 We were also interested in looking at how different context types of tracks affected skip behavior. To explore this a bit further, we calculated the frequency of each context_type respective to when skip_1, skip_2 and skip_3 were 'True'. As you can see in Figure 3, user skips are more frequent with the context type “user_collection” across skip_1, skip_2, and skip_3. While the user_collection is the most popular context_type regardless of whether songs were skipped or not, it is important nontheless to recognize that users more frequently skip songs in a user collection. The six types  of music context types listed in the graph below  signify:
+
 catalog: songs pertaining to a a specific artist or album that is finite. 
 editorial playlist: playlist created by Spotify for its users, i.e. "90's Workout" 
 radio: Spotify Radio function specifies custom playlist for a given Artist or track, i.e. Lana Del Rey Radio. 
@@ -67,8 +68,10 @@ user collection: playlist created by another Spotify user.
 personalized playlist: playlist created by that user. 
 charts: playlist created by Spotify containing most listened songs from a given location, i.e. "US Top 50 Songs."
 
+![Alt text](img/graph_1.png)
+
 # Random Forest Classifier
-Next, we worked on creating our baseline model that would be evaluated against a test set. We obtained a shortened version of the training data set, and conducted a training/test split of 70\%/30\% on this sample. That way, we were able to still use a large portion of the data without running into errors regarding training and test size. To implement the Random Forest classifier, first, it is important to understand how the Random Forest algorithm works. It can be described in four steps:
+Next, we worked on creating our baseline model that would be evaluated against a test set. We obtained a shortened version of the training data set, and conducted a training/test split of 70% 30% on this sample. That way, we were able to still use a large portion of the data without running into errors regarding training and test size. To implement the Random Forest classifier, first, it is important to understand how the Random Forest algorithm works. It can be described in four steps:
 1) From a dataset, select random samples of data, 2) Construct a decision tree for every sample and receive a resulting prediction from each tree.
 3) Conduct a vote for each predicted result, and 4) For the final prediction, select the prediction result with the most votes.
 
@@ -96,12 +99,14 @@ Finally, we created a model that uses deep learning recurrent neural networks in
 
 The LSTM was trained using the hyperparameters of a learning rate of 0.1, an Adam optimizer, and a batch size of 300 on 100 epochs.
 
+![Alt text](img/graph_4.png)
+
 # Results
 The Random Forest Classifier performed at an accuracy level of 65\%. This is a good baseline performance, and expect our model will improve upon this accuracy level. Experimenting with the SciKit’s built in feature importance tool on the Random Forest Classifier allowed us to confirm how important each feature selected is in predicting the skip or not skipped outcome. The graph is plotted in Figure 6. From this plot, one can see that the features related to the user's behavior with seeking forward and a long pause before playing were the top two most important in predicting skip or not skip for the Random Forest Classifier. While this is not ground truth, this is still helpful when creating the LSTM and Gradient Boosting Tree models because that helps us tune the model's weights while training.  
 
-The Gradient Boosting model performed at an accuracy level of 66%, however its further breakdown of precision, recall, and F1-score can be seen in Table 1. Class 0 represents "Not Skipped" and Class 1 represents "Skipped." From these results, GBT is much better at predicting if a song has not been skipped than predicting whether a song was skipped. This could be due to the class imbalance in our dataset, where there were many more "not skipped" sessions compared to "skipped." Regardless, this method provides good results when compared to other scores from this competition, as the winners were able to achieve accuracy levels of 81\% on first skip prediction and a mean average accuracy of 60.4%. 
+The Gradient Boosting model performed at an accuracy level of 66%, however its further breakdown of precision, recall, and F1-score can be seen in Table 1. Class 0 represents "Not Skipped" and Class 1 represents "Skipped." From these results, GBT is much better at predicting if a song has not been skipped than predicting whether a song was skipped. This could be due to the class imbalance in our dataset, where there were many more "not skipped" sessions compared to "skipped." Regardless, this method provides good results when compared to other scores from this competition, as the winners were able to achieve accuracy levels of 81% on first skip prediction and a mean average accuracy of 60.4%. 
 
-The LSTM further performed at an accuracy level of 64\%. This was the same as Random Forest, and slightly worse than Gradient Boosting Trees. Figure 7 shows the validation and train loss graph for this model, depicting how loss decreases with each epoch. An explanation for this performance can be multiple reasons. Firstly, since we used a smaller dataset, this could have caused the LSTM to perform worse, while unaffecting the decision tree models. 
+The LSTM further performed at an accuracy level of 6\%. This was the same as Random Forest, and slightly worse than Gradient Boosting Trees. Figure 7 shows the validation and train loss graph for this model, depicting how loss decreases with each epoch. An explanation for this performance can be multiple reasons. Firstly, since we used a smaller dataset, this could have caused the LSTM to perform worse, while unaffecting the decision tree models. 
 
 Another consideration is that LSTM training time is long as it requires much time for the memory gates to input or forget information. Thus, the LSTM approach may not be feasible for large datasets with complex features. 
 
