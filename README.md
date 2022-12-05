@@ -110,7 +110,7 @@ The LSTM further performed at an accuracy level of 6\%. This was the same as Ran
 
 Another consideration is that LSTM training time is long as it requires much time for the memory gates to input or forget information. Thus, the LSTM approach may not be feasible for large datasets with complex features. 
 
-![Alt text](img/Screen Shot 2022-12-04 at 8.54.27 PM.png)
+![Alt text](img/graph_5.png)
 
 
 
