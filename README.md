@@ -125,7 +125,10 @@ In terms of deciding which deep learning models would address the issue of song 
 
 ### Random Forest Classifier
 Next, we worked on creating our baseline model that would be evaluated against a test set. We obtained a shortened version of the training data set, and conducted a training/test split of 70% 30% on this sample. That way, we were able to still use a large portion of the data without running into errors regarding training and test size. To implement the Random Forest classifier, first, it is important to understand how the Random Forest algorithm works. It can be described in four steps:
-1) From a dataset, select random samples of data, 2) Construct a decision tree for every sample and receive a resulting prediction from each tree, 3) Conduct a vote for each predicted result, and 4) For the final prediction, select the prediction result with the most votes.
+1) From a dataset, select random samples of data
+2) Construct a decision tree for every sample and receive a resulting prediction from each tree
+3) Conduct a vote for each predicted result 
+4) For the final prediction, select the prediction result with the most votes.
 
 Using the Pearson coefficients and p-values of significance, the statistically significant features for the model were extracted for skip_1, skip\_2 and skip_3 respectively. All of these variables were turned into float values, and normalized so that they could be fed to the Random Forest Classifier.
 
